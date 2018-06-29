@@ -1,7 +1,17 @@
-let neo4j = require('neo4j-driver').v1;
+let mysql = require('mysql');
+let connection = mysql.createConnection({
+	host     : 'localhost',
+	port     : 3306,
+    user     : 'root',
+	password : 'root',
+	database : 'testenode'
+});
 
 function createDBConnection() {
-	return neo4j.driver('bolt://localhost', neo4j.auth.basic('neo4j', 'temkill1234!@#')).session();
+	connection.connect(function(err) {
+  		if (err) return err
+  		console.log("Conectado!");
+	});
 }
 
 module.exports = function () {

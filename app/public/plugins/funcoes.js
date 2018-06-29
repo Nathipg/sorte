@@ -25,11 +25,11 @@ $('body').tooltip({
     selector: '[data-toggle="tooltip"]'
 });
 
-$( document ).ready( function() {
-    $( '#btnEntrar' ).mouseover( function () {
-        $( "#textoEntrar" ).text( "Enterrar" );
-    });
-    $( '#btnEntrar' ).mouseout(function () {
-        $( "#textoEntrar" ).text( "Entrar" );
-    });
-});
+// $( document ).ready( function() {
+//     $( '#btnEntrar' ).mouseover( function () {
+//         $( "#textoEntrar" ).text( "Enterrar" );
+//     });
+//     $( '#btnEntrar' ).mouseout(function () {
+//         $( "#textoEntrar" ).text( "Entrar" );
+//     });
+// });

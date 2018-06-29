@@ -3,7 +3,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
-        <title>Reaper - Requiescat in Pace: Records</title>
+        <title>Controle de Salas</title>
 		<!--Estilos-->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -15,14 +15,14 @@
 			<div class="alert alert-danger" role="alert"><%= erro %></div>
 		<% } %>
 		<div class="container-fluid">
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-12 txt-center">
 					<img class="logo" src="img/logo.svg" alt="REAPER" />
 				</div>
-			</div>
+			</div> -->
 			<div class="row">
-				<div class="col-12 txt-center ">
-					<button id="btnEntrar" class="btn btn-secondary" data-toggle="modal" data-target="#modalLogin"><span id="textoEntrar">Entrar</span></button>
+				<div class="col-12 txt-center " style="margin-top: 10em">
+					<button  id="btnEntrar" class="btn btn-secondary" data-toggle="modal" data-target="#modalLogin"><span id="textoEntrar">Entrar</span></button>
 				</div>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="modalLoginTitle">Reaper - Login</h5>
+						<h5 class="modal-title" id="modalLoginTitle">Controle de Salas - Login</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
