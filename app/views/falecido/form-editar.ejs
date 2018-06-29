@@ -1,0 +1,113 @@
+<% include ../header.ejs %>
+	<div class="caixa container-fluid">
+		<div class="col-12 txt-center">
+			<h3>Edição de Falecido</h3>
+		</div>
+		<form action="/falecido" id="formFalecido" method="POST">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="name">Nome:</label>
+						<input type="text" class="form-control" name="name" id="name" required value="<%= falecido.name %>">
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-5">
+					<div class="form-group">
+						<label for="dataNasc">Data Nascimento:</label>
+						<input type="text" class="form-control" name="dataNasc" id="dataNasc" required value="<%= falecido.dataNasc %>">
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="form-group">
+						<label for="dataFalec">Data Falecimento:</label>
+						<input type="text" class="form-control" name="dataFalec" id="dataFalec" required value="<%= falecido.dataFalec %>">
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="causaMortis">Causa da morte:</label>
+						<input type="text" class="form-control" name="causaMortis" id="causaMortis" required value="<%= falecido.causaMortis %>">
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="epitafio">Epitáfio:</label>
+						<input type="text" class="form-control" name="epitafio" id="epitafio" required value="<%= falecido.epitafio %>">
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+        	<div class="col-2"></div>
+            <div class="col-8 txt-center">
+            	<button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title='"Enterrando..."' onclick="validarFalecido();">Editar</button>
+                <button type="button" class="btn btn-warning" onclick="limparCampos()">Limpar Campos</button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+		</form>
+	</div>
+
+	<script>
+		function limparCampos() {
+			$('#formFalecido').trigger('reset');
+		}
+
+		function validarFalecido() {
+			removerAviso();
+
+			if( $('#name').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#dataNasc').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#dataFalec').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#causaMortis').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#epitafio').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			let regexData = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+
+			if( !regexData.exec( $('#dataNasc').val() ) ) {
+				adicionarAviso( 'danger', 'O nascimento deve ser passado no formato dd/mm/aaaa' );
+				return false;
+			}
+
+			if( !regexData.exec( $('#dataFalec').val() ) ) {
+				adicionarAviso( 'danger', 'O falecimento deve ser passado no formato dd/mm/aaaa' );
+				return false;
+			}
+
+			$('#formFalecido').trigger('submit');
+		}
+	</script>
+
+<% include ../footer.ejs %>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Reaper - Requiescat in Pace: Records</title>
+		<!-- Versão Bootstrap.css 4.0.0 alpha 6-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/chosen.min.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+		<link rel="icon" type="image/ico" href="img/favicon.ico" />
+    </head>
+    <body>
+        <nav class="navbar sticky-top navbar-toggleable navbar-inverse bg-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <span class="navbar-brand">Reaper <small>1.0</small></span>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="corNavLink nav-link" href="/mapa">Mapa</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="corNavLink nav-link dropdown-toggle pointer" href="#" id="navbarDropdownCadastrar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastrar</a>
+                        <div class="dropdown-menu bg-inverse" aria-labelledby="navbarDropdownCadastrar">
+                            <a class="dropdown-item" href="/mapa-form">Cadastrar Quadras</a>
+                            <a class="dropdown-item" href="/falecido-form">Cadastrar Falecidos</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="corNavLink nav-link dropdown-toggle pointer" href="#" id="navbarDropdownBuscar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar</a>
+                        <div class="dropdown-menu bg-inverse" aria-labelledby="navbarDropdownBuscar">
+                            <a class="dropdown-item" href="/mapa-ponto">Busca Ponto a Ponto</a>
+                            <a class="dropdown-item" href="/mapa-pessoa">Busca Ponto a Pessoa</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" data-toggle="tooltip" data-placement="bottom" title="Em caso de apocalipse zumbi, clique aqui!">Explodir Cemitério</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="aviso"></div>

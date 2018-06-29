@@ -1,0 +1,31 @@
+{
+  "name": "reaper",
+  "version": "1.0.0",
+  "description": "Requiescat in Pace: Records",
+  "main": "app.js",
+  "scripts": {
+    "clean": "rimraf build && rimraf build",
+    "build": "webpack -p",
+    "start": "webpack-dev-server -p",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nathipg/reaper_neo4j.git"
+  },
+  "author": "D4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nathipg/reaper_neo4j/issues"
+  },
+  "homepage": "https://github.com/Nathipg/reaper_neo4j#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-load": "^1.1.16",
+    "express-validator": "^4.3.0",
+    "htmlparser": "^1.7.7",
+    "neo4j-driver": "^1.5.0"
+  }
+}

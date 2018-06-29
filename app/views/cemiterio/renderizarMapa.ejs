@@ -1,0 +1,76 @@
+<div id="graph" class="container-fluid">
+	<svg width="1280" height="2000" pointer-events="all">
+		<% for(i = 0; i < links.length; i++) { %>
+			<line class="link" fonte="<%= links[i].fonte %>" alvo="<%= links[i].alvo %>" x1="<%= links[i].x1 + 20  %>" y1="<%= links[i].y1 + 20  %>" x2="<%= links[i].x2 + 20  %>" y2="<%= links[i].y2 + 20  %>">
+			</line>
+		<% } %>
+		<% for(i = 0; i < nodes.length; i++) { %>
+			<circle name="<%= nodes[i].title %>" cx="<%= nodes[i].x + 20 %>" cy="<%= nodes[i].y + 20 %>" r="10" class="node <%= nodes[i].label %>"
+				onclick="definirPonto( '<%= nodes[i].title %>' )">
+				<%
+					let indice = 0;
+					if( nodes[i].title.indexOf('_') == -1 ) {
+						indice = nodes[i].title.split('')[1];
+					} else {
+						indice = nodes[i].title.split('_')[0];
+						indice = indice.split('');
+						if( indice.length > 2 ) {
+							indice = indice[1] + '' + indice[2];
+						} else {
+							indice = indice[1];
+						}
+					}
+				%>
+				<title><%= nodes[i].title %></title>
+				<indice><%= indice %></indice>
+				<letra><%= nodes[i].title.indexOf('_') == -1 ? nodes[i].title.split('')[0] : '' %></letra>
+			</circle>
+		<% } %>
+	</svg>
+</div>
+
+<script>
+	let campoDefinirPonto = null;
+
+	function limparMapa() {
+		removerAviso();
+		$('.link').attr('class', 'link');
+		$('#graph circle').attr('style', '');
+	}
+
+	function alterarNomeCampoDefinirPonto( nome ) {
+		campoDefinirPonto = nome;
+	}
+
+	function definirPonto( ponto ) {
+		if( campoDefinirPonto != null ) {
+			$( campoDefinirPonto ).val( ponto );
+			campoDefinirPonto = null;
+		}else{
+			if( ponto.indexOf('_') != -1 ){
+				selecionarDetalhesFalecido( ponto );
+				$('#modalDetFalecido').modal();
+			}
+		}
+	}
+
+	function tracarRota( caminho ) {
+		if( caminho.length > 1 ) {
+	    	adicionarAviso('success', 'Caminho traçado!');
+	        let i;
+	        let tamanho = caminho.length;
+
+	        $(`#graph circle[name="${caminho[0]}"]`).css('fill', '#FFA500');
+	        $(`#graph circle[name="${caminho[tamanho - 1]}"]`).css('fill', '#FFD700');
+
+	        for( i = 0; i < tamanho - 1; i++ ) {
+	        	$('.link[fonte=' + caminho[i] + '][alvo=' + caminho[i+1] + '], .link[fonte=' + caminho[i+1] + '][alvo=' + caminho[i] + ']')
+					.attr('class', 'link linhaDestaque');
+	        }
+	    } else if( caminho.length == 1 ) {
+	    	adicionarAviso('success', 'Você já está no túmulo dessa pessoa!');
+	    } else {
+	    	adicionarAviso('danger', 'Pontos não encontrados ou inválidos');
+	    }
+	}
+</script>

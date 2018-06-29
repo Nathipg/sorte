@@ -1,0 +1,144 @@
+<% include ../header.ejs %>
+	<div class="caixa container-fluid">
+		<div class="col-12 txt-center">
+			<h3>Cadastro de Falecido</h3>
+		</div>
+		<form action="/falecido" id="formFalecido" method="POST">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="name">Nome:</label>
+						<input type="text" class="form-control" name="name" id="name" required>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-5">
+					<div class="form-group">
+						<img class="img-fluid imgCadFalecido" src="img/lapide.svg" alt="Lápide" />
+						<label for="dataNasc">Data Nascimento:</label>
+						<input type="text" class="form-control" name="dataNasc" id="dataNasc" required>
+						<small>Formato: dd/mm/aaaa</small>
+					</div>
+				</div>
+				<div class="col-5">
+					<div class="form-group">
+						<label for="dataFalec">Data Falecimento:</label>
+						<input type="text" class="form-control" name="dataFalec" id="dataFalec" required>
+						<small>Formato: dd/mm/aaaa</small>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="causaMortis">Causa da morte:</label>
+						<input type="text" class="form-control" name="causaMortis" id="causaMortis" required>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-10">
+					<div class="form-group">
+						<label for="epitafio">Epitáfio:</label>
+						<input type="text" class="form-control" name="epitafio" id="epitafio" required>
+					</div>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-6">
+					<div class="form-group">
+						<span class="fa fa-rebel pointer" onclick="alterarNomeCampoDefinirPonto( '#tumulo' )"></span>
+						<label for="tumulo">Túmulo:</label>
+						<input type="text" class="form-control" name="tumulo" id="tumulo" required>
+					</div>
+				</div>
+				<div class="col-4 txt-center">
+					<br />
+					<small>Dica: Clique no ícone <small class="fa fa-rebel"></small> acima do campo túmulo e depois no túmulo desejado.</small>
+				</div>
+				<div class="col-1"></div>
+			</div>
+			<div class="row">
+        	<div class="col-2"></div>
+            <div class="col-8 txt-center">
+            	<button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title='"Enterrando..."' onclick="validarFalecido();">Cadastrar</button>
+                <button type="button" class="btn btn-warning" onclick="limparCampos()">Limpar Campos</button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+		</form>
+		<% include ../legenda.ejs %>
+	</div>
+
+	<% include ../cemiterio/renderizarMapa.ejs %>
+
+	<script>
+		function limparCampos() {
+			removerAviso();
+			$('#formFalecido').trigger('reset');
+		}
+
+		function validarFalecido() {
+			removerAviso();
+			if( $('#tumulo').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#name').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#dataNasc').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#dataFalec').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#causaMortis').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#epitafio').val() == '' ) {
+				adicionarAviso( 'danger', 'Todos os campos são obrigatórios' );
+				return false;
+			}
+
+			if( $('#tumulo').val().indexOf('_') == -1 ) {
+				adicionarAviso( 'danger', 'O falecido só pode ser relacionada a um túmulo' );
+				return false;
+			}
+
+			let regexData = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+
+			if( !regexData.exec( $('#dataNasc').val() ) ) {
+				adicionarAviso( 'danger', 'O nascimento deve ser passado no formato dd/mm/aaaa' );
+				return false;
+			}
+
+			if( !regexData.exec( $('#dataFalec').val() ) ) {
+				adicionarAviso( 'danger', 'O falecimento deve ser passado no formato dd/mm/aaaa' );
+				return false;
+			}
+
+			$('#formFalecido').trigger('submit');
+		}
+	</script>
+
+<% include ../footer.ejs %>

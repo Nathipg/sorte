@@ -1,0 +1,114 @@
+<% include ../header.ejs %>
+
+    <div id="busca" class="caixa container-fluid">
+        <div class="row txt-center">
+            <div class="col-12">
+                <h3>Busca por pessoa</h3>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <span class="fa fa-empire pointer" onclick="alterarNomeCampoDefinirPonto( '#busca_pessoa_ponto_inicial' )"></span>
+                <label for="busca_pessoa_ponto_inicial">Ponto inicial:</label>
+                <input type="text" class="form-control text-uppercase" placeholder="Ponto inicial" name="busca_pessoa_ponto_inicial" id="busca_pessoa_ponto_inicial" required>
+            </div>
+            <div class="col-4">
+                <span class="fa fa-pencil pointer" data-toggle="tooltip" title="Editar pessoa" onclick="editarFalecido( $('#busca_pessoa').val() )"></span>
+                <label for="busca_pessoa">Pessoa:</label>
+                <select name="busca_pessoa" id="busca_pessoa" class="chosen-select persoChosen">
+                    <option value=""></option>
+                    <% listaFalecidos.records.forEach( resultado => { %>
+						<option value="<%= resultado.get('name') %>"><%= resultado.get('name') %></option>
+					<% }); %>
+                </select>
+            </div>
+            <div class="col-2"></div>
+        </div>
+ 		<div class="row">
+        	<div class="col-2"></div>
+        	<div class="col-8 txt-center">
+        		<small>Dica: Clique no ícone <small class="fa fa-empire"></small> acima do campo ponto inicial e depois no ponto desejado.</small><br />
+				<small>Dica: Para editar o falecido clique no lápis <small class="fa fa-pencil"></small> .</small>
+        	</div>
+        	<div class="col-2"></div>
+        </div>
+        <div class="row">
+        	<div class="col-2"></div>
+            <div class="col-8 txt-center">
+            	<button class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title='"Eu vejo gente morta..."' onclick="buscarPontoAPessoa()" >Traçar Rota</button>
+                <button class="btn btn-warning" onclick="limparBuscaPessoa()">Limpar Campos</button>
+                <button class="btn btn-danger" onclick="limparMapa()">Limpar Rotas</button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <% include ../legenda.ejs %>
+    </div>
+
+	<% include renderizarMapa.ejs %>
+
+	<script>
+		function limparBusca() {
+			removerAviso();
+			document.querySelector('input[name=busca_para]').value = '';
+			document.querySelector('input[name=busca_de]').value = '';
+		}
+
+		function limparBuscaPessoa() {
+			removerAviso();
+			document.querySelector('input[name=busca_pessoa_ponto_inicial]').value = '';
+			document.querySelector('select[name=busca_pessoa]').value = '';
+			$('#busca_pessoa').trigger('chosen:updated');
+		}
+
+		function buscarPontoAPessoa() {
+			removerAviso();
+			limparMapa();
+
+			pontoInicial = $('#busca_pessoa_ponto_inicial').val().toUpperCase();
+			pontoFinal = $('#busca_pessoa').val();
+
+			if( pontoInicial == '' || pontoFinal == '' ) {
+				adicionarAviso('danger', 'É necessário definir um ponto de início e selecionar uma pessoa');
+				return false;
+			}
+
+			if( pontoInicial.length != 2 && pontoInicial.length != 6 ) {
+				adicionarAviso('danger', 'Ponto inicial inválido');
+				return false;
+			}
+
+			$.ajax({
+			    type: 'GET',
+			    url: '/mapa/tracarRotaPontoAPessoa',
+			    data: {
+			    	pontoInicial: pontoInicial,
+			    	pontoFinal: pontoFinal,
+			    	tipoPI: pontoInicial.indexOf('_') == -1 ? 'Interseccao' : 'Tumulo'
+			    },
+			    dataType: 'json',
+			    success: function (retorno) {
+			    	try {
+		            	tracarRota( retorno );
+		            } catch(e) {
+		            	adicionarAviso('danger', 'Pontos não encontrados ou inválidos');
+		            }
+			    }
+			});
+		}
+
+		function editarFalecido( nomeFalecido ) {
+			removerAviso();
+
+			if( nomeFalecido == '' ) {
+				adicionarAviso('danger', 'É preciso selecionar uma pessoa');
+				return false;
+			}
+
+			nomeFalecido = encodeURIComponent( nomeFalecido );
+
+			window.location.href = 'http://localhost:3000/falecido-form-editar?nome=' + nomeFalecido;
+		}
+	</script>
+
+<% include ../footer.ejs %>

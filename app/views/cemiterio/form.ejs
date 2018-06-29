@@ -1,0 +1,221 @@
+<% include ../header.ejs %>
+	<div class="container-fluid">
+		<!-- <div class="row caixa">
+			<div class="col-12 txt-center">
+				<h3>Personalizar Quadra</h3>
+				<small class="">Dica: Dê um duplo clique no túmulo para habilitar ou desabilitar</small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4"></div>
+			<div id="grafoQuadra col-4">
+				<svg width="500" height="450">
+					<line class="link" x1="100" y1="100" x2="100" y2="250"></line>
+					<line class="link" x1="100" y1="100" x2="250" y2="100"></line>
+					<line class="link" x1="250" y1="100" x2="400" y2="100"></line>
+					<line class="link" x1="400" y1="100" x2="400" y2="250"></line>
+					<line class="link" x1="100" y1="250" x2="100" y2="400"></line>
+					<line class="link" x1="400" y1="250" x2="400" y2="400"></line>
+					<line class="link" x1="100" y1="400" x2="250" y2="400"></line>
+					<line class="link" x1="250" y1="400" x2="400" y2="400"></line>
+
+					<line class="link" x1="100" y1="100" x2="150" y2="150"></line>
+					<line class="link" x1="100" y1="250" x2="150" y2="250"></line>
+					<line class="link" x1="100" y1="400" x2="150" y2="350"></line>
+					<line class="link" x1="250" y1="100" x2="250" y2="150"></line>
+					<line class="link" x1="250" y1="400" x2="250" y2="350"></line>
+					<line class="link" x1="400" y1="100" x2="350" y2="150"></line>
+					<line class="link" x1="400" y1="250" x2="350" y2="250"></line>
+					<line class="link" x1="400" y1="400" x2="350" y2="350"></line>
+
+					<line class="link" x1="150" y1="150" x2="250" y2="150"></line>
+					<line class="link" x1="150" y1="150" x2="150" y2="250"></line>
+					<line class="link" x1="250" y1="150" x2="350" y2="150"></line>
+					<line class="link" x1="250" y1="150" x2="250" y2="250"></line>
+					<line class="link" x1="350" y1="150" x2="350" y2="250"></line>
+					<line class="link" x1="150" y1="250" x2="250" y2="250"></line>
+					<line class="link" x1="150" y1="250" x2="150" y2="350"></line>
+					<line class="link" x1="250" y1="250" x2="350" y2="250"></line>
+					<line class="link" x1="250" y1="250" x2="250" y2="350"></line>
+					<line class="link" x1="350" y1="250" x2="350" y2="350"></line>
+					<line class="link" x1="150" y1="350" x2="250" y2="350"></line>
+					<line class="link" x1="250" y1="350" x2="350" y2="350"></line>
+
+					<circle cx="100" cy="100" r="10" class="node interseccao"></circle>
+					<circle cx="100" cy="250" r="10" class="node interseccao"></circle>
+					<circle cx="100" cy="400" r="10" class="node interseccao"></circle>
+					<circle cx="250" cy="100" r="10" class="node interseccao"></circle>
+					<circle cx="250" cy="400" r="10" class="node interseccao"></circle>
+					<circle cx="400" cy="100" r="10" class="node interseccao"></circle>
+					<circle cx="400" cy="250" r="10" class="node interseccao"></circle>
+					<circle cx="400" cy="400" r="10" class="node interseccao"></circle>
+
+					<circle posicao="1" cx="150" cy="150" r="10" class="node tumulo"></circle>
+					<circle posicao="2" cx="150" cy="250" r="10" class="node tumulo"></circle>
+					<circle posicao="3" cx="150" cy="350" r="10" class="node tumulo"></circle>
+					<circle posicao="4" cx="250" cy="150" r="10" class="node tumulo"></circle>
+					<circle posicao="5" cx="250" cy="250" r="10" class="node tumulo"></circle>
+					<circle posicao="6" cx="250" cy="350" r="10" class="node tumulo"></circle>
+					<circle posicao="7" cx="350" cy="150" r="10" class="node tumulo"></circle>
+					<circle posicao="8" cx="350" cy="250" r="10" class="node tumulo"></circle>
+					<circle posicao="9" cx="350" cy="350" r="10" class="node tumulo"></circle>
+				</svg>
+			</div>
+			<div class="col-4"></div>
+		</div> -->
+
+		<div id="pontosLigamento" class="caixa">
+	        <div class="row">
+	            <div class="col-12 txt-center">
+	                <h3>Cadastro de Quadras</h3>
+	            </div>
+	        </div>
+			<div class="row">
+	            <div class="col-12 txt-center">
+	                <p>Defina os pontos (inicial / final) e clique em salvar.</p>
+	            </div>
+	        </div>
+	        <div class="row">
+				<div class="col-2"></div>
+	            <div class="col-4">
+	                <span class="fa fa-empire pointer" onclick="alterarNomeCampoDefinirPonto( '#ponto_inicial' )"></span>
+	                <label for="ponto_inicial">Ponto inicial:</label>
+	                <input type="text" class="form-control" placeholder="Ponto inicial" name="ponto_inicial" id="ponto_inicial">
+	            </div>
+	            <div class="col-4">
+	                <span class="fa fa-rebel pointer" onclick="alterarNomeCampoDefinirPonto( '#ponto_final' )"></span>
+	                <label for="ponto_final">Ponto final:</label>
+	                <input type="text" class="form-control" placeholder="Ponto final" name="ponto_final" id="ponto_final">
+	            </div>
+			</div>
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8 txt-center">
+					<button class="btn btn-primary" onclick="salvarQuadra()">Salvar</button>
+					<button class="btn btn-warning" onclick="limparPontosLigamento()">Limpar</button>
+				</div>
+				<div class="col-2"></div>
+			</div>
+	        <div class="row">
+				<div class="col-2"></div>
+				<div class="col-8 txt-center">
+					<small>Dica: Clique no ícone <small class="fa fa-empire"></small> ou <small class="fa fa-rebel"></small> acima dos campos ponto inicial e ponto final e no ponto desejado.</small>
+				</div>
+				<div class="col-2"></div>
+			</div>
+			<% include ../legenda.ejs %>
+	    </div>
+
+		<% include renderizarMapa.ejs %>
+	</div>
+	<script>
+		function limparPontosLigamento() {
+			removerAviso();
+			document.querySelector('input[name=ponto_inicial]').value = '';
+			document.querySelector('input[name=ponto_final]').value = '';
+		}
+
+		function salvarQuadra() {
+			removerAviso();
+			let pontoInicial = $('#ponto_inicial').val();
+			let pontoFinal = $('#ponto_final').val();
+
+			if( pontoInicial == '' || pontoFinal == '' ) {
+				adicionarAviso( 'danger', 'É necessário definir o ponto inicial e o final' );
+				return false;
+			}
+
+			pontoInicial = $('#graph svg circle[name=' + pontoInicial.toUpperCase() + ']');
+			pontoFinal = $('#graph svg circle[name=' + pontoFinal.toUpperCase() + ']');
+
+			if( pontoInicial.attr('name').indexOf('_') != -1 || pontoFinal.attr('name').indexOf('_') != -1 ) {
+				adicionarAviso( 'danger', 'Os dois pontos devem ser intersecções' );
+				return false;
+			}
+
+			let maior = {
+				A: 0,
+				B: 0,
+				C: 0,
+				D: 0,
+				E: 0,
+				F: 0,
+				G: 0,
+				H: 0,
+				I: 0
+			};
+			$('#graph svg circle.interseccao').each(function() {
+				let letra = $(this).children('letra').html();
+				let indice = $(this).children('indice').html();
+				maior[letra] = maior[letra] < indice ? indice : maior[letra];
+			});
+
+			let maiorQuadra = 0;
+			$('#graph svg circle.tumulo>indice').each(function() {
+				maiorQuadra = maiorQuadra < parseInt( $(this).html() ) ? parseInt( $(this).html() ) : maiorQuadra;
+			});
+
+			let pontosLarguraCerta = (
+				(pontoInicial.attr('name').indexOf('A') != -1 && pontoFinal.attr('name').indexOf('C') != -1)
+				|| (pontoInicial.attr('name').indexOf('B') != -1 && pontoFinal.attr('name').indexOf('D') != -1)
+				|| (pontoInicial.attr('name').indexOf('C') != -1 && pontoFinal.attr('name').indexOf('E') != -1)
+				|| (pontoInicial.attr('name').indexOf('D') != -1 && pontoFinal.attr('name').indexOf('F') != -1)
+				|| (pontoInicial.attr('name').indexOf('E') != -1 && pontoFinal.attr('name').indexOf('G') != -1)
+				|| (pontoInicial.attr('name').indexOf('F') != -1 && pontoFinal.attr('name').indexOf('H') != -1)
+				|| (pontoInicial.attr('name').indexOf('G') != -1 && pontoFinal.attr('name').indexOf('I') != -1)
+			);
+
+			if( !pontosLarguraCerta ) {
+				adicionarAviso( 'danger', 'Os dois pontos devem respeitar a largura da quadra' );
+				return false;
+			}
+
+			let proximaLetra = { A: 'B', B: 'C', C: 'D', D: 'E', E: 'F', F: 'G', G: 'H', H: 'I' };
+
+			let letraPI = pontoInicial.children('letra').html();
+			let letraPF = pontoFinal.children('letra').html();
+			let indiceMaiorPI = maior[letraPI];
+			let indiceMaiorPF = maior[letraPF];
+			let indiceMaiorMeio = maior[ proximaLetra[pontoInicial.children('letra').html()] ];
+
+			if( pontoInicial.children('indice').html() != pontoFinal.children('indice').html() ) {
+				adicionarAviso( 'danger', 'Os dois pontos devem estar no mesma altura' );
+				return false;
+			}
+
+			indiceNivelamento = Math.min(indiceMaiorPI, indiceMaiorPF, indiceMaiorMeio);
+
+			if( pontoInicial.children('indice').html() < indiceNivelamento || pontoFinal.children('indice').html() < indiceNivelamento ) {
+				adicionarAviso( 'danger', 'Os dois pontos devem estar posicionados no final do cemitério' );
+				return false;
+			}
+
+			pontoInicial = {
+				'letra': pontoInicial.attr('name').split('')[0],
+				'indice': pontoInicial.children('indice').html(),
+				'x': pontoInicial.attr('cx') - 20,
+				'y': pontoInicial.attr('cy') - 20
+			};
+
+			pontoFinal = {
+				'letra': pontoFinal.attr('name').split('')[0],
+				'indice': pontoFinal.children('indice').html(),
+				'x': pontoFinal.attr('cx') - 20,
+				'y': pontoFinal.attr('cy') - 20
+			};
+
+			$('#formQuadra input[name=pontoInicial]').val( JSON.stringify(pontoInicial) );
+			$('#formQuadra input[name=pontoFinal]').val( JSON.stringify(pontoFinal) );
+			$('#formQuadra input[name=quadra]').val( maiorQuadra + 1 );
+
+			$('#formQuadra').submit();
+		}
+	</script>
+
+	<form action="/mapa" method="POST" class="hidden" id="formQuadra">
+		<input type="text" name="pontoInicial">
+		<input type="text" name="pontoFinal">
+		<input type="text" name="quadra">
+	</form>
+
+<% include ../footer.ejs %>

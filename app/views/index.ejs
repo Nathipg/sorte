@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+        <title>Reaper - Requiescat in Pace: Records</title>
+		<!--Estilos-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/chosen.min.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+	</head>
+	<body>
+		<% if( erro != '' ) { %>
+			<div class="alert alert-danger" role="alert"><%= erro %></div>
+		<% } %>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 txt-center">
+					<img class="logo" src="img/logo.svg" alt="REAPER" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 txt-center ">
+					<button id="btnEntrar" class="btn btn-secondary" data-toggle="modal" data-target="#modalLogin"><span id="textoEntrar">Entrar</span></button>
+				</div>
+			</div>
+		</div>
+		<!--Modal -->
+		<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitle" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalLoginTitle">Reaper - Login</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="/login" id="formLogin" method="POST">
+							<div class="row">
+								<div class="col-sm-4 txt-right">Usuário:</div>
+								<div class="col-sm-6 txt-right">
+									<input type="text" id="inputUsuario" name="usuario">
+								</div>
+								<div class="col-sm-2"></div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4 txt-right">Senha:</div>
+								<div class="col-sm-6 txt-right">
+									<input type="password" id="inputSenha" name="senha">
+								</div>
+								<div class="col-sm-2"></div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer txt-center">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-success" onclick="$('#formLogin').submit()">Login</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--Scripts-->
+		<script type="text/javascript" src="plugins/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="plugins/tether.min.js"></script>
+		<script type="text/javascript" src="plugins/bootstrap.min.js"></script> <!-- Versão 4.0.0 alpha 6-->
+		<script type="text/javascript" src="plugins/chosen.jquery.min.js"></script>
+		<script type="text/javascript" src="plugins/funcoes.js"></script>
+	</body>
+</html>
