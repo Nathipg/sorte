@@ -34,6 +34,10 @@ module.exports = function( app ) {
 		});
 	});
 
+	app.get('/usuario-criar', function ( request, response ) {
+		response.render('usuario/criar');
+	});
+
 	//Ações
 	app.post('/usuario', function ( request, response ) {
 		let connection = app.infra.connectionFactory();

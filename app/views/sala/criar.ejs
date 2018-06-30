@@ -1,0 +1,70 @@
+<% include ../header.ejs %>
+
+<div class="caixa container-fluid">
+	<div class="col-12 txt-center">
+		<h3>Criar Sala</h3>
+	</div>
+	<form action="/falecido" method="POST">
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Tipo de Sala</label>
+					<input class="form-control" type="text" name="tipoSala" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Status</label>
+					<select class="form-control" name="status">
+						<option value="Disponível">Disponível</option>
+						<option value="Manutenção">Manutenção</option>
+						<option value="Reservada">Reservada</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Descrição</label>
+					<input class="form-control" type="text" name="descricao" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Local</label>
+					<input class="form-control" type="text" name="local" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Estado de Conservação</label>
+					<input class="form-control" type="text" name="estadoConservacao" maxlength="255" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Número</label>
+					<input class="form-control" type="text" name="numero" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<input class="btn btn-success" type="text" name="Criar">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<% include ../footer.ejs %>
