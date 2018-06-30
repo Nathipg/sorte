@@ -1,0 +1,66 @@
+<% include ../header.ejs %>
+
+<div class="caixa container-fluid">
+	<div class="col-12 txt-center">
+		<h3>Criar Usuário</h3>
+	</div>
+	<form action="/usuario-update" method="POST">
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>CPF</label>
+					<input class="form-control" type="text" name="cpf" maxlength="14" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Nome</label>
+					<input class="form-control" type="text" name="nome" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Sobrenome</label>
+					<input class="form-control" type="text" name="sobrenome" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Departamento</label>
+					<input class="form-control" type="text" name="departamento" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Função</label>
+					<input class="form-control" type="text" name="funcao" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Senha</label>
+					<input class="form-control" type="password" name="senha" maxlength="45" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<input class="btn btn-success" type="text" name="Editar">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<% include ../footer.ejs %>
