@@ -4,13 +4,13 @@ function UsuarioDAO( connection ) {
 
 UsuarioDAO.prototype.listar = callback => {
 	let sql = "SELECT * FROM Usuario";
-	conn.query( sql, [], callback );
+	this._connection.query( sql, [], callback );
 }
 
 UsuarioDAO.prototype.detalhes = ( id, callback ) => {
 	let sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 UsuarioDAO.prototype.insert = ( dados, callback ) => {
@@ -21,7 +21,7 @@ UsuarioDAO.prototype.insert = ( dados, callback ) => {
 			( ?, ?, ?, ?, ?, ? )`;
 
 	let values = [ dados.cpf, dados.nome, dados.sobrenome, dados.departamento, dados.funcao, dados.senha ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 UsuarioDAO.prototype.update = ( dados, callback ) => {
@@ -36,11 +36,15 @@ UsuarioDAO.prototype.update = ( dados, callback ) => {
 			senha = ?
 		WHERE idUsuario = ?`;
 	let values = [ dados.cpf, dados.nome, dados.sobrenome, dados.departamento, dados.funcao, dados.senha, dados.idUsuario ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 UsuarioDAO.prototype.delete = ( id, callback ) => {
 	let sql = "DELETE FROM Usuario WHERE idUsuario = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
+}
+
+module.exports = function() {
+	return UsuarioDAO;
 }

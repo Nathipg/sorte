@@ -13,13 +13,13 @@ ReservaDAO.prototype.listar = callback => {
 		             ON u.idUsuario = r.idUsuario
 		     INNER JOIN Sala AS s
 		             ON s.idSala = r.idSala`;
-	conn.query( sql, [], callback );
+	this._connection.query( sql, [], callback );
 }
 
 ReservaDAO.prototype.detalhes = ( id, callback ) => {
 	let sql = "SELECT * FROM Reserva WHERE idReserva = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 ReservaDAO.prototype.insert = ( dados, callback ) => {
@@ -29,7 +29,7 @@ ReservaDAO.prototype.insert = ( dados, callback ) => {
 		VALUES
 			( ?, ?, ? )`;
 	let values = [ dados.idUsuario, dados.idSala, dados.dataReserva ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 ReservaDAO.prototype.update = ( dados, callback ) => {
@@ -41,11 +41,15 @@ ReservaDAO.prototype.update = ( dados, callback ) => {
 			dataReserva = ?
 		WHERE idReserva = ?`;
 	let values = [ dados.idUsuario, dados.idSala, dados.dataReserva, dados.idReserva ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 ReservaDAO.prototype.delete = ( id, callback ) => {
 	let sql = "DELETE FROM Reserva WHERE idReserva = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
+}
+
+module.exports = function() {
+	return ReservaDAO;
 }
