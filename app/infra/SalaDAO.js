@@ -1,12 +1,3 @@
-let mysql = require('mysql');
-let connection = mysql.createConnection({
-	host     : 'localhost',
-	port     : 3306,
-    user     : 'root',
-	password : 'root',
-	database : 'controlesalas'
-});
-
 function SalaDAO( connection ) {
 	this._connection = connection;
 }
@@ -51,4 +42,8 @@ SalaDAO.prototype.delete = ( id, callback ) => {
 	let sql = "DELETE FROM Sala WHERE idSala = ?";
 	let values = [ id ];
 	conn.query( sql, values, callback );
+}
+
+module.exports = function() {
+	return SalaDAO;
 }

@@ -44,3 +44,7 @@ UsuarioDAO.prototype.delete = ( id, callback ) => {
 	let values = [ id ];
 	conn.query( sql, values, callback );
 }
+
+module.exports = function() {
+	return UsuarioDAO;
+}
