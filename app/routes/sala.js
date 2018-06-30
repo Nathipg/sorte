@@ -14,6 +14,10 @@ module.exports = function( app ) {
 		connection.close();
 	});
 
+	app.get('/sala-criar', function ( request, response ) {
+		response.render('sala/criar');
+	});
+
 	app.get('/sala-detalhes', function ( request, response ) {
 		let connection = app.infra.connectionFactory();
         let salaDAO = new app.infra.SalaDAO(connection);

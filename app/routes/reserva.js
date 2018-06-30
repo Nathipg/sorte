@@ -19,14 +19,35 @@ module.exports = function( app ) {
         let reservaDAO = new app.infra.ReservaDAO(connection);
 		let idReserva = request.query.idReserva;
 
-		reservaDAO.detalhes(idReserva, function( infos ) {
-			response.render('reserva/detalhes', {
-				reserva: {
-					idReserva: infos.records[0].get('idReserva'),
-					idUsuario: infos.records[0].get('idUsuario'),
-					idSala: infos.records[0].get('idSala'),
-					dataReserva: infos.records[0].get('dataReserva')
-				}
+		usuarioDAO.listar(function( listaUsuario ) {
+			salaDAO.listar(function( listaSala ) {
+				reservaDAO.detalhes(idReserva, function( infos ) {
+					response.render('reserva/detalhes', {
+						reserva: {
+							idReserva: infos.records[0].get('idReserva'),
+							idUsuario: infos.records[0].get('idUsuario'),
+							idSala: infos.records[0].get('idSala'),
+							dataReserva: infos.records[0].get('dataReserva')
+						},
+						listaUsuario: listaUsuario,
+                    	listaSala: listaSala
+					});
+				});
+			});
+		});
+	});
+
+	app.get('/reserva-criar', function ( request, response ) {
+		let usuarioDAO = new app.infra.UsuarioDAO(connection);
+		let salaDAO = new app.infra.SalaDAO(connection);
+
+		usuarioDAO.listar(function( listaUsuario ) {
+			salaDAO.listar(function( listaSala ) {
+				connection.close();
+				response.render('reserva/criar', {
+                    listaUsuario: listaUsuario,
+                    listaSala: listaSala
+                });
 			});
 		});
 	});

@@ -32,6 +32,10 @@ module.exports = function( app ) {
 		});
 	});
 
+	app.get('/historicoReservas-criar', function ( request, response ) {
+		response.render('historicoReservas/criar');
+	});
+
 	//Ações
 	app.post('/historicoReservas', function ( request, response ) {
 		let connection = app.infra.connectionFactory();

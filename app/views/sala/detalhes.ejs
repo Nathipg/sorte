@@ -1,0 +1,93 @@
+<% include ../header.ejs %>
+
+<div class="caixa container-fluid">
+	<div class="col-12 txt-center">
+		<h3>Detalhes da Sala</h3>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="form-group">
+				<button class="btn btn-danger" onclick="deletar( <%= sala.idSala %> )">Deletar</button>
+			</div>
+		</div>
+	</div>
+	<form action="/sala-update" method="POST">
+		<input type="hidden" name="idSala" value="<%= sala.idSala %>">
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Tipo de Sala</label>
+					<input class="form-control" type="text" name="tipoSala" maxlength="45" value="<%= sala.tipoSala %>">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Status</label>
+					<select class="form-control" name="status">
+						<option value="Disponível" <%= sala.status == 'Disponível' ? 'selected' : '' %> >Disponível</option>
+						<option value="Manutenção" <%= sala.status == 'Manutenção' ? 'selected' : '' %> >Manutenção</option>
+						<option value="Reservada" <%= sala.status == 'Reservada' ? 'selected' : '' %> >Reservada</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Descrição</label>
+					<input class="form-control" type="text" name="descricao" maxlength="45" value="<%= sala.descricao %>">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Local</label>
+					<input class="form-control" type="text" name="local" maxlength="45" value="<%= sala.local %>">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Estado de Conservação</label>
+					<input class="form-control" type="text" name="estadoConservacao" maxlength="255" value="<%= sala.estadoConservacao %>">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Número</label>
+					<input class="form-control" type="text" name="numero" maxlength="45" value="<%= sala.numero %>">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<input class="btn btn-success" type="text" name="Editar">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	function deletar( id ) {
+		$.ajax({
+		    type: 'POST',
+		    url: '/sala-delete',
+		    data: {
+		    	idSala: id
+		    },
+		    dataType: 'json',
+		    success: function (retorno) {
+		    }
+		});
+	}
+</script>
+
+<% include ../footer.ejs %>
