@@ -7,13 +7,16 @@ let connection = mysql.createConnection({
 	database : 'testenode'
 });
 
-function createDBConnection() {
+module.exports = function () {
 	connection.connect(function(err) {
   		if (err) return err
-  		console.log("Conectado!");
+  		console.log("Conectado ao banco!");
 	});
 }
 
-module.exports = function () {
-	return createDBConnection;
-}
+// function createDBConnection() {
+// 	connection.connect(function(err) {
+//   		if (err) return err
+//   		console.log("Conectado!");
+// 	});
+// }
