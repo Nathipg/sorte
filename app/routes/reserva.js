@@ -38,6 +38,7 @@ module.exports = function( app ) {
 	});
 
 	app.get('/reserva-criar', function ( request, response ) {
+		let connection = app.infra.connectionFactory();
 		let usuarioDAO = new app.infra.UsuarioDAO(connection);
 		let salaDAO = new app.infra.SalaDAO(connection);
 
