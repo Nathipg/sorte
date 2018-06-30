@@ -11,7 +11,7 @@ module.exports = function( app ) {
 			});
 		});
 
-		connection.close();
+		connection.end();
 	});
 
 	app.get('/reserva-detalhes', function ( request, response ) {
