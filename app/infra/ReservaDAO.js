@@ -3,7 +3,16 @@ function ReservaDAO( connection ) {
 }
 
 ReservaDAO.prototype.listar = callback => {
-	let sql = "SELECT * FROM Reserva";
+	let sql = `
+		SELECT
+			r.*,
+			CONCAT( u.nome, ' ', u.sobrenome ) AS usuario,
+			CONCAT( s.tipoSala, ': ', s.local, ' ', s.numero ) AS sala
+		FROM Reserva AS r
+		     INNER JOIN Usuario AS u
+		             ON u.idUsuario = r.idUsuario
+		     INNER JOIN Sala AS s
+		             ON s.idSala = r.idSala`;
 	conn.query( sql, [], callback );
 }
 

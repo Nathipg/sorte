@@ -1,0 +1,38 @@
+<% include ../header.ejs %>
+
+<div class="caixa container-fluid">
+	<div class="col-12 txt-center">
+		<h3>Listagem de Reservas</h3>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			idReserva, idUsuario, idSala, dataReserva
+			<table class="table table-striped table-hover">
+				<thead>
+					<th>
+						<td>ID</td>
+						<td>Usuário</td>
+						<td>Sala</td>
+						<td>Data</td>
+						<td></td>
+					</th>
+				</thead>
+				<tbody>
+					<% lista.forEach( item => { %>
+					<tr>
+						<td><%= item.idReserva %></td>
+						<td><a href="/usuario-detalhes?idReserva=<%= item.idUsuario %>"><%= item.usuario %></a></td>
+						<td><a href="/sala-detalhes?idReserva=<%= item.idSala %>"><%= item.sala %></a></td>
+						<td><%= item.dataReserva %></td>
+						<td>
+							<a href="/reserva-detalhes?idReserva=<%= item.idReserva %>">Detalhes</a>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<% include ../footer.ejs %>

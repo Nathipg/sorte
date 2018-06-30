@@ -1,0 +1,51 @@
+<% include ../header.ejs %>
+
+<div class="caixa container-fluid">
+	<div class="col-12 txt-center">
+		<h3>Criar da Reserva</h3>
+	</div>
+	<form action="/reserva" method="POST">
+		<input type="hidden" name="idReserva" value="<%= reserva.idReserva %>">
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Data</label>
+					<input class="form-control" type="date" name="dataReserva" maxlength="10" value="">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Usuário</label>
+					<select class="form-control" name="idUsuario">
+						<% listaUsuario.forEach( item => { %>
+							<option value="<%= item.idSala %>"><%= item.nome %> <%= item.sobrenome %></option>
+						<% }); %>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<label>Sala</label>
+					<select class="form-control" name="idSala">
+						<% listaSala.forEach( item => { %>
+							<option value="<%= item.idSala %>"><%= item.tipoSala %>: <%= item.local %> <%= item.numero %></option>
+						<% }); %>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<input class="btn btn-success" type="text" name="Criar">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<% include ../footer.ejs %>
