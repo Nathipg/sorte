@@ -26,6 +26,7 @@
     "express-load": "^1.1.16",
     "express-validator": "^4.3.0",
     "htmlparser": "^1.7.7",
-    "neo4j-driver": "^1.5.0"
+    "mysql": "^2.15.0",
+    "neo4j-driver": "^1.6.1"
   }
 }
