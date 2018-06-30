@@ -4,13 +4,13 @@ function SalaDAO( connection ) {
 
 SalaDAO.prototype.listar = callback => {
 	let sql = "SELECT * FROM Sala";
-	conn.query( sql, [], callback );
+	this._connection.query( sql, [], callback );
 }
 
 SalaDAO.prototype.detalhes = ( id, callback ) => {
 	let sql = "SELECT * FROM Sala WHERE idSala = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 SalaDAO.prototype.insert = ( dados, callback ) => {
@@ -20,7 +20,7 @@ SalaDAO.prototype.insert = ( dados, callback ) => {
 		VALUES
 			( ?, ?, ?, ?, ?, ? )`;
 	let values = [ dados.tipoSala, dados.status, dados.descricao, dados.local, dados.estadoConservacao, dados.numero ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 SalaDAO.prototype.update = ( dados, callback ) => {
@@ -35,13 +35,13 @@ SalaDAO.prototype.update = ( dados, callback ) => {
 			numero = ?
 		WHERE idSala = ?`;
 	let values = [ dados.tipoSala, dados.status, dados.descricao, dados.local, dados.estadoConservacao, dados.numero, dados.idSala ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 SalaDAO.prototype.delete = ( id, callback ) => {
 	let sql = "DELETE FROM Sala WHERE idSala = ?";
 	let values = [ id ];
-	conn.query( sql, values, callback );
+	this._connection.query( sql, values, callback );
 }
 
 module.exports = function() {
