@@ -2,7 +2,7 @@ function SalaDAO( connection ) {
 	this._connection = connection;
 }
 
-SalaDAO.prototype.listar = callback => {
+SalaDAO.prototype.listar = function(callback) {
 	let sql = "SELECT * FROM Sala";
 	this._connection.query( sql, [], callback );
 }

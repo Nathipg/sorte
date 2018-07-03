@@ -1,13 +1,23 @@
 module.exports = function( app ) {
 
 	//Telas
-	app.get('/sala', function ( request, response ) {
+	app.get('/sala', function ( request, response, next ) {
 		let connection = app.infra.connectionFactory();
 		let salaDAO = new app.infra.SalaDAO(connection);
 
-		salaDAO.listar(function( resultados ) {
-			response.render('sala/listagem', {
-				lista: resultados
+		salaDAO.listar(function( err, resultados ) {
+			if (err) {
+				return next(err);
+			}
+			response.format({
+				html: function() {
+					response.render('sala/listagem', {
+						lista: resultados
+					});
+				},
+				json: function() {
+					response.json(resultados);
+				}
 			});
 		});
 

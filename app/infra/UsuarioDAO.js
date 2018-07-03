@@ -2,18 +2,18 @@ function UsuarioDAO( connection ) {
 	this._connection = connection;
 }
 
-UsuarioDAO.prototype.listar = callback => {
+UsuarioDAO.prototype.listar = function(callback) {
 	let sql = "SELECT * FROM Usuario";
 	this._connection.query( sql, [], callback );
 }
 
-UsuarioDAO.prototype.detalhes = ( id, callback ) => {
+UsuarioDAO.prototype.detalhes = function(id, callback) {
 	let sql = "SELECT * FROM Usuario WHERE idUsuario = ?";
 	let values = [ id ];
 	this._connection.query( sql, values, callback );
 }
 
-UsuarioDAO.prototype.insert = ( dados, callback ) => {
+UsuarioDAO.prototype.insert = function(dados,callback) {
 	let sql = `
 		INSERT INTO Usuario
 			( cpf, nome, sobrenome, departamento, funcao, senha )
@@ -24,7 +24,7 @@ UsuarioDAO.prototype.insert = ( dados, callback ) => {
 	this._connection.query( sql, values, callback );
 }
 
-UsuarioDAO.prototype.update = ( dados, callback ) => {
+UsuarioDAO.prototype.update = function(dados, callback) {
 	let sql = `
 		UPDATE Usuario
 		SET

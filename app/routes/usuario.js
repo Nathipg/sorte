@@ -1,20 +1,29 @@
 module.exports = function( app ) {
-
 	//Telas
-	app.get('/usuario', function ( request, response ) {
+	app.get('/usuario', function ( request, response, next ) {
 		let connection = app.infra.connectionFactory();
 		let usuarioDAO = new app.infra.UsuarioDAO(connection);
 
-		usuarioDAO.listar(function( resultados ) {
-			response.render('usuario/listagem', {
-				lista: resultados
+		usuarioDAO.listar(function( err, resultados ) {
+			if (err) {
+				return next(err);
+			}
+			response.format({
+				html: function() {
+					response.render('usuario/listagem', {
+						lista: resultados
+					});
+				},
+				json: function() {
+					response.json(resultados);
+				}
 			});
 		});
 
 		connection.end();
 	});
 
-	app.get('/usuario-detalhes', function ( request, response ) {
+	app.get('/usuario-detalhes', function ( request, response, next ) {
 		let connection = app.infra.connectionFactory();
         let usuarioDAO = new app.infra.UsuarioDAO(connection);
 		let idUsuario = request.query.idUsuario;

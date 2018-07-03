@@ -1,13 +1,23 @@
 module.exports = function( app ) {
 
 	//Telas
-	app.get('/reserva', function ( request, response ) {
+	app.get('/reserva', function ( request, response, next ) {
 		let connection = app.infra.connectionFactory();
 		let reservaDAO = new app.infra.ReservaDAO(connection);
 
-		reservaDAO.listar(function( resultados ) {
-			response.render('reserva/listagem', {
-				lista: resultados
+		reservaDAO.listar(function( err, resultados ) {
+			if (err) {
+				return next(err);
+			}
+			response.format({
+				html: function() {
+					response.render('reserva/listagem', {
+						lista: resultados
+					});
+				},
+				json: function() {
+					response.json(resultados);
+				}
 			});
 		});
 
@@ -44,7 +54,7 @@ module.exports = function( app ) {
 
 		usuarioDAO.listar(function( listaUsuario ) {
 			salaDAO.listar(function( listaSala ) {
-				connection.close();
+				connection.end();
 				response.render('reserva/criar', {
                     listaUsuario: listaUsuario,
                     listaSala: listaSala

@@ -2,7 +2,7 @@ function ReservaDAO( connection ) {
 	this._connection = connection;
 }
 
-ReservaDAO.prototype.listar = callback => {
+ReservaDAO.prototype.listar = function(callback) {
 	let sql = `
 		SELECT
 			r.*,
